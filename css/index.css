@@ -301,7 +301,7 @@ select:focus {
     background: rgba(233, 232, 231, 0.5);
     box-shadow: 0px 0px 1px rgb(77, 76, 76);
     border-radius: 5px;
-    height: 115px;
+    height: 400px;
     margin-top: 6px;
     padding: 20px;
 }
@@ -324,7 +324,7 @@ select:focus {
 /***** Tasks/todos tab style here *****/
 
 .todo-container {
-    height: 512px;
+    height: 95vh;
     scrollbar-width: none;
     overflow-y: auto !important;
     background: #f0eeee;
