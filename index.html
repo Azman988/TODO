@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Todo App</title>
+
+    <link rel="stylesheet" href="css/index.css">
+
+    <!--HEADER FONT LINK-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
+    <!--HEADER FONT LINK-->
+
+    <!--GENERAL FONT LINK-->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&family=Science+Gothic:wght@100..900&display=swap" rel="stylesheet">
+    <!--GENERAL FONT LINK-->
+
+    <!-- FONT AWESOME LINK -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- FONT AWESOME LINK -->
+</head>
+<body>
+    <div class="header">
+        <div class="logo-content">
+            <a href="index.html">
+                <img src="img/logo.png" alt="logo">
+            </a>
+            <h3 class="header-name">MY<span>DAILY</span>DO</h3>
+        </div>
+        <ul>
+            <li><a href="#" class="nav-links active">HOME</a></li>
+            <li><a href="#" class="nav-links">QOUTE</a></li>
+        </ul>
+    </div>
+    <div class="main">
+        <div class="input_qoute-div">
+            <div class="todo-input-container">
+                <!--
+            <div class="timer-div">
+                <p class="timer js-timer">00:00:00</p>
+                <span class="timer-tooltip"></span>
+            </div>
+                -->
+            <div class="content">
+                <!--Input header-->
+                <h1 class="input-header js-input-header">
+                    SET TASK <i class="fa-solid fa-pen-to-square"></i>
+                </h1>
+
+                <!--Time input div--> 
+                <div class="text-wrapper">
+                    <input type="text" name="text" placeholder="" id="" class="text js-text" required>
+
+                    <div class="js-focus-icon type-icon" onclick="textIcon('type')">
+                        <i class="fa-solid fa-pen"></i>
+                    </div>
+
+                    <div class="js-clear-icon clear-icon" onclick="textIcon('delete')">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </div>
+
+                    <label class="label">Type todo..</label>
+                </div>
+
+                <!--Time input div-->    
+                <div class="time-wrapper">
+                    <input type="time" name="time" id="" class="time" required>
+
+                    <i class="fa-regular fa-clock js-clock-icon"></i>
+
+                    <label class="label">Select time</label>
+
+                    <!-- Effective on time input clicked-->
+                    <div class="time-format js-time-format"></div>
+                    <!-- Effective on time input clicked-->
+                </div>
+
+                <!--REpeat div-->
+                <div class="repeat-div">
+                    <p class="repeat-text">Repeat?</p>
+                    <select name="dropdown" id="" class="repeat-dropdown">
+                        <option value="repeat">No Repeat</option>
+                        <option value="once">Once</option>
+                        <option value="daily">Twice</option>
+                        <option value="daily">Daily</option>
+                    </select>
+                </div>
+
+                <!--Submit btn-->
+                <div class="submit-btn-div">
+                    <button type="submit" class="submit-btn js-submit-btn" onclick="submitBtn();"><i class="fa-solid fa-check"></i></button>
+                    
+                    <p class="submit-text">Task submitted!</p>
+                </div>
+            </div>
+                <div class="collapse-icon" onclick="expCol('collapse')">
+                    <i class="fa-solid fa-angles-up"></i>
+                </div>
+            </div>
+            <div class="qoute-div">
+                <a href="" class="qoute-link">
+                    View more Qoutes...
+                </a>
+                <p class="qoute">qoute</p>
+            </div>
+        </div>
+    
+        <div class="todo-container">
+            <div class="task-header">
+                <select name="dropdown" id="" class="task-tab-dropdown">
+                    <option value="unfinished">Unfinished</option>
+                    <option value="finished">Finished</option>
+                </select>
+
+                <input type="search" name="search" id="search" class="search-bar">
+
+                <div class="task-header-icons">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <i class="fa-solid fa-ellipsis-vertical setting-icon"></i>
+                    <p class="setting">Nothing here yet</p>
+                </div>
+                
+                <div class="cancel-icon">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                </div>
+            </div>
+            <div class="done-tab"></div>
+            <div class="todo-tab"></div>
+
+            <div class="expand-icon" onclick="expCol('expand')">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/index.js"></script>
+</body>
+</html>

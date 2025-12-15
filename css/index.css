@@ -1,0 +1,553 @@
+* {box-sizing: border-box; margin: 0; padding: 0; font-family: "Science Gothic", sans-serif;}
+
+body {
+    background: #fafafa;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+}
+
+/******** HEADER STYLE STARTED ********/
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #77d321;
+    /*box-shadow: 0px 0px 4px #181717;*/
+    padding: 10px 6vw;
+    color: rgb(41, 40, 40);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
+.logo-content {
+    display: flex;
+    align-items: center;
+}
+
+.logo-content h3 {
+    font-family: "Science Gothic", sans-serif;
+    pointer-events: none;
+    color: #ddd;
+    font-weight: bolder;
+    margin-left: 3px;
+}
+
+.logo-content a img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.logo-content h3 span {
+    font-family: "Science Gothic", sans-serif;
+    color: #797878;
+}
+
+.header ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+}
+
+.nav-links {
+    color: rgb(41, 40, 40);
+    text-decoration: none;
+    margin-left: 20px;
+    transition: 0.5s ease;
+    font-size: 13px;
+}
+
+.nav-links:hover {
+    color: #ddd;
+}
+
+/*** USED TO STYLE ACTIVE PAGE LINK ***/
+.active {
+    color: #ddd;
+}
+/*** USED TO STYLE ACTIVE PAGE LINK ***/
+
+/******** HEADER STYLE ENDED ********/
+
+
+/******** MAIN & TODO INPUT STYLE STARTED ********/
+
+.main {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 6vh;
+}
+
+.input_qoute-div {
+    padding: 0 4px;
+}
+
+.todo-input-container {
+    background: #f0eeee;
+    height: fit-content;
+    padding: 40px 0;
+    margin-top: 4.5vh;
+    border-radius: 10px;
+    box-shadow: 0px 0px 1px rgb(77, 76, 76);
+    position: relative;
+}
+
+.collapse-icon,
+.expand-icon {
+    display: none;
+}
+
+.input-header {
+    font-size: 25px;
+    pointer-events: none;
+}
+
+
+/****** STYLES ALL INPUT *******/
+
+.content {
+    width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.text-wrapper {
+    position: relative;
+    width: 70%; /*** percent of todo input container ***/
+    margin-top: 40px;
+}
+
+.text,
+.time {
+    height: 40px;
+    width: 100%;
+    margin-bottom: 40px;
+    border: none;
+    border-radius: 8px;
+    border-bottom: 3px solid black;
+    padding-left: 20px;
+    padding-right: 10px;
+    background: #f0ebeb;
+    box-shadow: 1px 1px 4px rgb(77, 76, 76);
+}
+
+.text {
+    padding-right: 40px;
+}
+
+input:focus {
+    outline: none;
+}
+/****** STYLES ALL INPUT ENDED *******/
+
+.text-wrapper label {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    pointer-events: none;
+    color: #797878;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+.time-wrapper label {
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    pointer-events: none;
+    color: #797878;
+    transition: 0.3s ease;
+    font-size: 14px;
+    z-index: 5;
+    background: #f0ebeb;
+}
+
+.text:focus~label,
+.text:not(:placeholder-shown)~.label {
+    top: -17px;
+    font-size: small;
+    color: #77d321;
+}
+
+.time {
+    cursor: pointer;
+}
+
+.clear-icon {
+    display: none;
+}
+
+.type-icon {
+    display: block;
+}
+
+.clear-icon,
+.type-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 15px;
+} 
+
+.time:focus~label,
+.time:valid~label {
+    top: -17px;
+    font-size: small;
+    color: #77d321;
+    background: none;
+}
+
+.time-wrapper .fa-clock {
+    position: absolute;
+    top: 7px;
+    right: 10px;
+    cursor: pointer;
+    background: #f0ebeb;
+    padding: 5px;
+} 
+
+.time-wrapper {
+    position: relative;
+    width: 70%;
+}
+
+/***** TEXT DISPLAYs ON TIME INPUT CLICKED *****/
+.time-format {
+    font-size: 10px;
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    top: 50px;
+    text-shadow: 0px 0px 2px rgb(77, 76, 76);
+}
+/***** TEXT DISPLAYs ON TIME INPUT CLICKED *****/
+
+/****** REPEAT style here *******/
+
+.repeat-div {
+    position: absolute;
+    bottom: 60px;
+    left: 15%; /** giving percentage to avoid shifting **/
+}
+
+.repeat-text {
+    margin-bottom: 12px;
+    font-size: 13px;
+    pointer-events: none;
+}
+
+/****** Dropdowns style here *******/
+.repeat-dropdown {
+    background: transparent;
+    border: 1px solid #797878;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 105px;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.task-tab-dropdown {
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    font-size: 12px;
+    padding: 4px 2px;
+}
+
+select:focus {
+    outline: none !important;
+}
+
+/****** Submit button style here *******/
+
+.submit-btn-div {
+    width: 70%;
+    text-align: right;
+}
+
+.submit-btn {
+    padding: 8px 12px;
+    background: #77d321;
+    color: #fafafa;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 25px;
+    box-shadow: 0px 0px 5px rgb(77, 76, 76);
+}
+
+/****** Task submit text *******/
+.submit-text {
+    position: absolute;
+    bottom: 20px;
+    right: 10%;
+    font-size: 10px;
+    color: green;
+    display: none;
+    transition: 0.45s ease-in-out;
+}
+
+/***** Qoute style here *****/
+
+.qoute-div {
+    background: rgba(233, 232, 231, 0.5);
+    box-shadow: 0px 0px 1px rgb(77, 76, 76);
+    border-radius: 5px;
+    height: 19.5vh;
+    margin-top: 6px;
+    padding: 20px;
+}
+
+.qoute-link {
+    text-decoration: none;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.qoute {
+
+}
+
+/***** Tasks/todos tab style here *****/
+
+.todo-container {
+    margin-top: 4vh;
+    height: 94vh;
+    scrollbar-width: none;
+    overflow-y: auto !important;
+    background: #f0eeee;
+    margin-right: 3px;
+    position: relative;
+}
+
+.task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    margin-bottom: 10px;
+    background: #797878;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.task-tab-dropdown {
+    background-color: #fafafa;
+}
+
+.search-bar {
+    display: none;
+    width: 90%;
+    border-radius: 5px;
+    border: none;
+    font-size: 12px;
+    padding: 4px 2px;
+}
+
+.search-bar:focus {
+    outline: none;
+}
+
+.task-header-icons i,
+.cancel-icon {
+    color: #fafafa;
+    cursor: pointer;
+    position: relative;
+}
+
+.setting {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #fafafa;
+    color: #181717;
+    padding: 3px;
+    font-size: 9px;
+}
+
+.search-icon {
+    margin-right: 15px;
+}
+
+.cancel-icon {
+    display: none;
+}
+
+/**** Unfinished todo tab ****/
+.todo-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.list-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+    border-bottom: 3px solid #77d321;
+    margin-bottom: 20px;
+    background: #f0ebeb;
+    padding: 10px;
+    box-shadow: 1px 1px 4px rgb(34, 34, 34);
+    font-size: 10px;
+    border-radius: 8px;
+    transition: 0.5s ease;
+}
+
+.todo-name {
+    width: 45%;
+    overflow: auto;
+    scrollbar-width: none;
+}
+
+.mark_del-div {
+    display: flex;
+    align-items: center;
+}
+
+.del-icon {
+    font-size: 12px;
+}
+
+.del-icon,
+.checkbox {
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+/**** Unfinished todo tab ****/
+.done-tab {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.done-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    border-bottom: 3px solid #d3212a;
+    margin-bottom: 20px;
+    background: #f0ebeb;
+    padding: 10px;
+    box-shadow: 1px 1px 4px rgb(34, 34, 34);
+    font-size: 10px;
+    border-radius: 8px;
+    transition: 0.5s ease;
+}
+
+/***** TASK/TODO STYLING ENDED *****/
+
+
+/****** Generated style list ******/
+/*** APPLIES WHEN TYPING IN TODO INPUT ***/
+.focused {
+    border-bottom: 3px solid #77d321;
+    transition: 0.3s ease-in-out;
+}
+/*** APPLIES WHEN TYPING IN TODO INPUT ***/
+
+/****** Generated style list ******/
+
+
+
+/******** MAIN STYLE ENDED ********/
+
+@media only screen and (min-width:611px) and (max-width: 780px) {
+    .text-wrapper,
+    .time-wrapper,
+    .list-container,
+    .submit-btn-div {
+        width: 87%;
+    }
+
+    .repeat-div {
+        left: 7%;
+    }
+}
+
+@media only screen and (max-width: 610px) {
+    .main {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+        padding: 0;
+    }
+
+    .todo-input-container {
+        background: #f0eeee;
+        margin-top: 0;
+        margin-left: 0;
+        box-shadow: 0 2px 4px #181717;
+        border-radius: 0;
+        position: fixed;
+        top: 7vh;
+        left: 0;
+        right: 0;
+        transition: 0.5s ease-in-out;
+        z-index: 5;
+    }
+    
+    .collapse-icon {
+        position: absolute;
+        bottom: -18px;
+        left: 48%;
+        font-size: 18px;
+        padding: 3px; 
+        border-radius: 100%;
+        color: #fafafa;
+        background-color: #77d321;
+        cursor: pointer;
+        box-shadow: 0px 0px 5px #181717;
+        display: block;
+    }
+
+    .input_qoute-div {
+        padding: 0;
+    }
+
+    .qoute-div {
+        margin-top: 75vh;
+        height: 100%;
+        box-shadow: none;
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .todo-container {
+        margin-top: 10vh;
+        height: 90vh;
+        margin-right: 0;
+        position: relative;
+    }
+
+    .expand-icon {
+        position: fixed;
+        bottom: 10%;
+        right: 20px;
+        font-size: 17px;
+        padding: 7px;
+        border-radius: 100%;
+        color: #fafafa;
+        background-color: #77d321;
+        cursor: pointer;
+        z-index: 10;
+        box-shadow: 0px 0px 5px #181717;
+    }
+
+}
