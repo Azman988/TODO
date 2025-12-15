@@ -324,6 +324,7 @@ select:focus {
 /***** Tasks/todos tab style here *****/
 
 .todo-container {
+    display: block;
     height: 95vh;
     scrollbar-width: none;
     overflow-y: auto !important;

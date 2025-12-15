@@ -262,6 +262,7 @@ window.addEventListener('resize', () => {
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.marginTop = '';
             todoContainer.style.height = '600px';
+            todoContainer.style.display = 'block';
     }
 }) 
 
