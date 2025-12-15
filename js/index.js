@@ -190,7 +190,7 @@ function expCol(param) {
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.display = 'block';
             todoContainer.style.marginTop = '58px';
-            todoContainer.style.height = '95vh';
+            todoContainer.style.height = '600px';
 
     } else if (param === 'expand') {
 
@@ -241,7 +241,7 @@ window.addEventListener('resize', () => {
             // reapply the normal styling 
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.marginTop = '';
-            todoContainer.style.height = '512px';
+            todoContainer.style.height = '600px';
 
     } else if (window.innerWidth < 611) {
         expandIcon.style.display = 'none';
@@ -261,7 +261,7 @@ window.addEventListener('resize', () => {
 
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.marginTop = '';
-            todoContainer.style.height = '95vh';
+            todoContainer.style.height = '600px';
     }
 }) 
 
