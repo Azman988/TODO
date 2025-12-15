@@ -188,8 +188,9 @@ function expCol(param) {
 
             // raise the todo container height
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.marginTop = '10vh';
-            todoContainer.style.height = '90vh';
+            todoContainer.style.display = 'block';
+            todoContainer.style.marginTop = '58px';
+            todoContainer.style.height = '512px';
 
     } else if (param === 'expand') {
 
@@ -197,7 +198,7 @@ function expCol(param) {
         collapseIcon.style.display = 'block';
 
         const inputContainer = document.querySelector('.todo-input-container');
-        inputContainer.style.height = '70vh';
+        inputContainer.style.height = 'fit-content';
         inputContainer.style.setProperty('padding', '40px 0');
 
             //to make INPUT content show again
@@ -209,8 +210,8 @@ function expCol(param) {
             qouteDivEl.style.display = 'block';
 
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.marginTop = '70vh';
-            todoContainer.style.height = '30vh';
+            todoContainer.style.display = 'none';
+            //todoContainer.style.height = '30vh';
     }
 }
 
@@ -226,7 +227,7 @@ window.addEventListener('resize', () => {
 
         const inputContainer = document.querySelector('.todo-input-container');
                 // reapply the normal styling
-            inputContainer.style.height = '70vh';
+            inputContainer.style.height = 'fit-content';
             inputContainer.style.setProperty('padding', '40px 0');
 
             // reveal INPUT content overflow and show them
@@ -239,16 +240,16 @@ window.addEventListener('resize', () => {
 
             // reapply the normal styling 
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.marginTop = '10vh';
-            todoContainer.style.height = '89.7vh';
+            todoContainer.style.marginTop = '';
+            todoContainer.style.height = '512px';
 
-    } else if (window.innerWidth <= 611) {
+    } else if (window.innerWidth < 611) {
         expandIcon.style.display = 'none';
         collapseIcon.style.display = 'block';
 
         const inputContainer = document.querySelector('.todo-input-container');
-            inputContainer.style.height = '70vh';
-            inputContainer.style.paddingTop = '7vh';
+            inputContainer.style.height = 'fit-content';
+            inputContainer.style.paddingTop = '55px';
 
             //to INPUT content display
         const contentEl = document.querySelector('.content');
@@ -260,7 +261,7 @@ window.addEventListener('resize', () => {
 
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.marginTop = '';
-            todoContainer.style.height = '100vh';
+            todoContainer.style.height = '512px';
     }
 }) 
 

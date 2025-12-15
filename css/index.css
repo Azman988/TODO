@@ -21,6 +21,7 @@ body {
     left: 0;
     right: 0;
     z-index: 10;
+    height: 55px;
 }
 
 .logo-content {
@@ -77,8 +78,9 @@ body {
 /******** MAIN & TODO INPUT STYLE STARTED ********/
 
 .main {
-    display: grid !important;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding-top: 59px;
 }
 
 .input_qoute-div {
@@ -87,9 +89,8 @@ body {
 
 .todo-input-container {
     background: #f0eeee;
-    height: 70vh;
+    height: fit-content;
     padding: 40px 0;
-    margin-top: 10.5vh;
     border-radius: 10px;
     box-shadow: 0px 0px 1px rgb(77, 76, 76);
     position: relative;
@@ -300,8 +301,8 @@ select:focus {
     background: rgba(233, 232, 231, 0.5);
     box-shadow: 0px 0px 1px rgb(77, 76, 76);
     border-radius: 5px;
-    height: 17.8vh;
-    margin-top: 1vh;
+    height: 115px;
+    margin-top: 6px;
     padding: 20px;
 }
 
@@ -323,8 +324,7 @@ select:focus {
 /***** Tasks/todos tab style here *****/
 
 .todo-container {
-    margin-top: 10vh;
-    height: 89.7vh;
+    height: 512px;
     scrollbar-width: none;
     overflow-y: auto !important;
     background: #f0eeee;
@@ -503,7 +503,7 @@ select:focus {
         box-shadow: 0 2px 4px #181717;
         border-radius: 0;
         position: fixed;
-        top: 7vh;
+        top: 55px;
         left: 0;
         right: 0;
         transition: 0.5s ease-in-out;
@@ -529,15 +529,15 @@ select:focus {
     }
 
     .qoute-div {
-        margin-top: 75vh;
-        height: 25vh;
+        margin-top: 450px;
+        height: 115px;
         box-shadow: none;
         width: 100%;
         padding: 40px 20px;
     }
 
     .todo-container {
-        margin-top: 10vh;
+        margin-top: 59px;
         height: 90vh;
         margin-right: 0;
         position: relative;
@@ -548,7 +548,7 @@ select:focus {
         bottom: 10%;
         right: 20px;
         font-size: 17px;
-        padding: 7px;
+        padding: 10px;
         border-radius: 100%;
         color: #fafafa;
         background-color: #77d321;
