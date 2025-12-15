@@ -537,15 +537,16 @@ select:focus {
     }
 
     .todo-container {
+        display: none;
         margin-top: 59px;
-        height: 90vh;
+        height: 600px;
         margin-right: 0;
         position: relative;
     }
 
     .expand-icon {
         position: fixed;
-        bottom: 10%;
+        bottom: 20%;
         right: 20px;
         font-size: 17px;
         padding: 10px;
