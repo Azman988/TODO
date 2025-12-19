@@ -32,44 +32,54 @@
     todoTabH.classList.add('todo-tab-head')
     document.querySelector('.todo-tab').prepend(todoTabH);
 
+
+
+
+
+
+
+    
+
     */
     
     // INPUT AND ICONS STARTED
-    function textIcon(param) {
+function textIcon(param) {
+    const textEl = document.querySelector('.js-text');
+
+    if (param === 'type') {
+        textEl.focus();
+    } else if (param === 'delete') {
+        textEl.value = '';
+        textEl.focus();
+        textEl.classList.remove('focused');
+
+        document.querySelector('.js-focus-icon').style.display = 'block'; 
+        document.querySelector('.js-clear-icon').style.display = 'none';
+    }
+}
+        // switch text icons on text input
+function textIconSwitch() {
+    document.querySelector('.js-text').addEventListener('input', () => {
+        const focusIcon = document.querySelector('.js-focus-icon');
+        const clearIcon = document.querySelector('.js-clear-icon');
         const textEl = document.querySelector('.js-text');
 
-        if (param === 'type') {
-            textEl.focus();
-        } else if (param === 'delete') {
-            textEl.value = '';
-            textEl.focus();
+        if (textEl.value.trim() === '') {
+            clearIcon.style.display = 'none';
+            focusIcon.style.display = 'block';
             textEl.classList.remove('focused');
-
-            document.querySelector('.js-focus-icon').style.display = 'block'; 
-            document.querySelector('.js-clear-icon').style.display = 'none';
+        } else {
+            clearIcon.style.display = 'block';
+            focusIcon.style.display = 'none';
+            textEl.classList.add('focused')
         }
-    }
-
-        // switch text icons on text input
-    document.querySelector('.js-text')
-        .addEventListener('input', () => {
-            const focusIcon = document.querySelector('.js-focus-icon');
-            const clearIcon = document.querySelector('.js-clear-icon');
-            const textEl = document.querySelector('.js-text');
-
-            if (textEl.value.trim() === '') {
-                clearIcon.style.display = 'none';
-                focusIcon.style.display = 'block';
-                textEl.classList.remove('focused');
-            } else {
-                clearIcon.style.display = 'block';
-                focusIcon.style.display = 'none';
-                textEl.classList.add('focused')
-            }
-        })
-
-        // add bottom border color when text is inserted
-const timeEl = document.querySelector('.time')
+    })
+}
+textIconSwitch()
+        
+function renderTime() {
+    // add bottom border color when text is inserted
+    const timeEl = document.querySelector('.time')
     timeEl.addEventListener('input', () => {
         
             // add bottom border color
@@ -91,15 +101,17 @@ const timeEl = document.querySelector('.time')
         }, 3000)
     })
 
-    // clock icon interactivity
-document.querySelector('.js-clock-icon').addEventListener('click', () => {
-        timeEl.click(); // CLICK TIME INPUT
-    })
+        // clock icon interactivity
+    document.querySelector('.js-clock-icon').addEventListener('click', () => {
+            timeEl.click(); // CLICK TIME INPUT
+        })
+}
+renderTime();
 
-    // INPUT AND ICONS ENDED
-
+    // qoute autotyping..
+function autotyping() {
     const autoTypeElement = document.querySelector('.qoute');
-    const texts = ['Life without plan...', 'is Life without purpose.', 'Make plans,', 'chase dreams,', 'be purposeful.'];
+    const texts = ['Life without plan...', 'is Life without purpose.', 'Make plans...', 'chase dreams...', 'be purposeful.'];
     let textIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
@@ -124,20 +136,22 @@ document.querySelector('.js-clock-icon').addEventListener('click', () => {
     }
 
     autoType();
-
-
-
+}
+autotyping();
 
     // Task header search icon interactivity 
-document.querySelector('.search-icon').addEventListener('click', () => {
-    document.querySelector('.task-header-icons').style.display = 'none'
-    document.querySelector('.task-tab-dropdown').style.display = 'none'
+function searchIcon() {
+    document.querySelector('.search-icon').addEventListener('click', () => {
+        document.querySelector('.task-header-icons').style.display = 'none'
+        document.querySelector('.task-tab-dropdown').style.display = 'none'
 
-    document.querySelector('.search-bar').style.display = 'block'
-    document.querySelector('.search-bar').focus();
-    
-    document.querySelector('.cancel-icon').style.display = 'block'
-})
+        document.querySelector('.search-bar').style.display = 'block'
+        document.querySelector('.search-bar').focus();
+        
+        document.querySelector('.cancel-icon').style.display = 'block'
+    })
+}
+searchIcon();
 
     // Task header exit icon interactivity
 document.querySelector('.cancel-icon').addEventListener('click', () => {
@@ -147,18 +161,6 @@ document.querySelector('.cancel-icon').addEventListener('click', () => {
     document.querySelector('.search-bar').style.display = 'none'
     
     document.querySelector('.cancel-icon').style.display = 'none'
-})
-
-    // Task header setting icon interactivity
-const settingIcon = document.querySelector('.setting-icon');
-    settingIcon.addEventListener('click', () => {
-    const settingEl = document.querySelector('.setting')
-    
-    if (settingEl.style.display === 'none') {
-        settingEl.style.display = 'block';
-    } else {
-        settingEl.style.display = 'none';
-    }
 })
 
     //TODO INPUT CONTAINER EXPAND AND COLLAPSE FUNCTION
@@ -188,9 +190,7 @@ function expCol(param) {
 
             // raise the todo container height
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.display = 'block';
-            todoContainer.style.marginTop = '58px';
-            todoContainer.style.height = '600px';
+            todoContainer.style.height = '95vh';
 
     } else if (param === 'expand') {
 
@@ -210,13 +210,15 @@ function expCol(param) {
             qouteDivEl.style.display = 'block';
 
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.display = 'none';
-            //todoContainer.style.height = '30vh';
+            todoContainer.style.height = '';
     }
 }
 
+
+
     // avoiding small screen style on large screen
-window.addEventListener('resize', () => {
+function windowResize() {
+    window.addEventListener('resize', () => {
         // target hide and display icons
     let collapseIcon = document.querySelector('.collapse-icon');
     let expandIcon = document.querySelector('.expand-icon');
@@ -265,123 +267,146 @@ window.addEventListener('resize', () => {
             todoContainer.style.display = 'block';
     }
 }) 
-
-
- //JSON.parse(localStorage.getItem('todo')) 
-    //{id: 2, todoName: 'WORKOUT', dueTime: '07:00'}
+}
+windowResize();
 
 
     // array object handling function
 function createTodo(todoName, dueTime) {
     return {
-        id: Date.now() + Math.random(), // generate random numbers
+        id: crypto.randomUUID(), // generate random id
         todoName,
         dueTime
     }
 }
 
-//
+let todoList = JSON.parse(localStorage.getItem('todo')) || []; 
 
-// variable with empty array.
-    let todoList = [];
-        // save the array object handling function in variable.
-    let todo = JSON.parse(localStorage.getItem('todo')); 
-    //|| createTodo('START EARLY', '05:00');
-        // push the object handling function to the empty array.
-    todoList.push(todo)
-
-    renderHtml(); // function call
+    renderHtml(); // display todo on page load.
 function renderHtml() {
 
     let todoHtml = '';
 
     todoList.forEach((value, index) => {
         html = `
-            <div class="list-container">
+            <div class="list-container js-list-container-${value.id} js-list-container" data-list-container-id="${value.id}">
                 <p class="todo-name">${value.todoName}</p>
                 <p class="todo-time">${value.dueTime}</p>
                 <div class="mark_del-div">
-
-                    <input type="checkbox" name="mark" class="checkbox" data-id="${value.id}">
+                    <input type="checkbox" name="check" class="checkbox" data-done-id="${value.id}">
 
                     <i class="fa-solid fa-trash-can del-icon" onclick="todoList.splice(${index}, 1);
                    renderHtml()
-                   localStorage.setItem('todo', JSON.stringify(todo));"></i>
+                   localStorage.setItem('todo', JSON.stringify(todoList));"></i>
                 </div>
             </div>`;
         todoHtml += html;
     })
     document.querySelector('.todo-tab').innerHTML = todoHtml;
+
+    editTodo()
 };
 
 
+let doneList = JSON.parse(localStorage.getItem('done')) || [];
+    // Add interactivity to checkbox
+function markDone() {
+    document.querySelectorAll('.checkbox').forEach(checkBox => {
+        checkBox.addEventListener('click', () => {
+            const doneId = checkBox.dataset.doneId;
 
+                // find the value clicked and push to doneList array
+            let newId = todoList.find(lists => lists.id === doneId)
 
-        // create new array for the done tab
-    const doneList = [];
+            doneList.push(newId);
 
-        renderHtml2();
-    function renderHtml2() {
+            localStorage.setItem('done', JSON.stringify(doneList));
 
-            // target all the checkbox and loop throung each
-        document.querySelectorAll('.checkbox')
-            .forEach((todo) => {todo.addEventListener('change', (e) => {
-                    // target the data id and save in variable
-                const id = Number(e.target.dataset.id);
+                // extract the clicked value from mother array and save the remaining to a diff div
+            newTodoList = [];
+            todoList.forEach(lists => {
+                if (doneId !== lists.id) {
+                    newTodoList.push(lists)
+                }
+            })
 
-                    // use todoList to find each id and save too
-                const clickedId = JSON.parse(localStorage.getItem('done')); 
+            todoList = newTodoList;
 
+                // remove the value container from the UI
+            //let container = document.querySelector(`.js-list-container-${doneId}`);
+            //container.remove();
 
-                //todoList.find(value => value.id === id);
-                    // push the id each id value to new array
-                doneList.push(clickedId)
+            localStorage.setItem('todo', JSON.stringify(todoList));
 
-                    // generate html for each value
-                let doneHtml = '';
+            renderDoneHtml()
+        })
+    })
+}
+markDone();
 
-                doneList.forEach((value) => {
-                    html = `
-                    <div class="done-list-container">
-                        <input type="checkbox" name="mark" checked>
-                        <p>${value.todoName}</p>
-                        <p>${value.dueTime}</p>
-                    </div>`
+function renderDoneHtml() {
+    let html = '';
 
-                    doneHtml += html;
-                })
-                
-                    // add the generated html to DOM.
-                document.querySelector('.done-tab').innerHTML = doneHtml;
+    doneList.forEach((todo, index) => {
+        html += `
+            <div class="done-list-container">
+                <input type="checkbox" name="uncheck-todo" checked>
+                <p class="todo-name">${todo.todoName}</p>
+                <p>${todo.dueTime}</p>
+                <i class="fa-solid fa-trash-can del-icon" onclick="doneList.splice(${index}, 1);
+                   renderDoneHtml()
+                   localStorage.setItem('done', JSON.stringify(doneList));"></i>
+            </div>`
+    });
+    document.querySelector('.done-tab').innerHTML = html;
+}
+renderDoneHtml();
 
-                    // remove the container containing each value clicked
-                setTimeout(() => {
-                    e.target.closest('.list-container').remove();
-                }, 600);
+    // edit todo function
+function editTodo() {
+    document.querySelectorAll('.js-list-container').forEach(list => {
+        list.addEventListener('click', () => {
+            const containerId = list.dataset.listContainerId;
 
-                localStorage.setItem('done', JSON.stringify(clickedId));
+            let todo;
+            let time;
+
+            todoList.forEach(value => {
+                if (value.id === containerId) {
+                    todo = value.todoName;
+                    time = value.dueTime;
+                }
+            })
+
+            const textEl = document.querySelector('.js-text');
+            if (todo !== undefined) {
+                textEl.value = todo;
+            }
+
+            const timeEl = document.querySelector('.time');
+            if (time !== undefined) {
+                timeEl.value = time;
+            }
+
+            document.querySelector(`.js-list-container-${containerId}`).remove();
+
+            let newTodoList = [];
+
+            todoList.forEach(value => {
+
+                if (containerId !== value.id) {
+                    newTodoList.push(value);
+                }
+                todoList = newTodoList;
+
+                localStorage.setItem('todo', JSON.stringify(todoList));
             })
         })
-    }
+    })
+}
+editTodo();
 
-
-    /*
-        document.querySelectorAll('.del-icon').forEach((del) => {
-                del.addEventListener('click', (e) => {
-                    
-
-                    const delId = Number(del.dataset.id)
-
-                    const checked = todoList.find(value => value.id === delId);
-
-                    checked.splice
-                })
-            })
-    */
-
-
-
-    // Submit tasks btn function
+    // Add interactivity to checkbox Submit btn..
 function submitBtn()  {
     setTimeout(() => {
         document.querySelector('.submit-text').style.display = 'none';
@@ -391,13 +416,11 @@ function submitBtn()  {
     todoName = textEl.value.toUpperCase();
     const timeEl = document.querySelector('.time');
     dueTime = timeEl.value;
-
-    
     
         // Only add task if there are text inputs
     if (textEl.value.trim() !== '' && timeEl.value !== '') {
             // recall the push function.
-        todoList.push(createTodo(todoName, dueTime))
+        todoList.push(createTodo(todoName, dueTime));
         document.querySelector('.submit-text').style.display = 'block';
     }
 
@@ -415,23 +438,27 @@ function submitBtn()  {
         timeEl.classList.remove('focused');
     }
 
-    renderHtml();   // recall 
-    renderHtml2(); // recall checkbox function
+    renderHtml(); 
+    markDone();
 
-    localStorage.setItem('todo', JSON.stringify(todo));
+    localStorage.setItem('todo', JSON.stringify(todoList));
 };
 
     // dropdown task tab switcher
+function switchTodoTab() {
     document.querySelector('.task-tab-dropdown')
-        .addEventListener('change', (e) => {
-            if (e.target.value === "unfinished") {
-                document.querySelector('.done-tab').style.display = 'none';
-                document.querySelector('.todo-tab').style.display = 'flex';
-            } else if (e.target.value === "finished") {
-                document.querySelector('.done-tab').style.display = 'flex';
-                document.querySelector('.todo-tab').style.display = 'none';
-            }
-        })
+    .addEventListener('change', (e) => {
+        if (e.target.value === "unfinished") {
+            document.querySelector('.done-tab').style.display = 'none';
+            document.querySelector('.todo-tab').style.display = 'flex';
+        } else if (e.target.value === "finished") {
+            document.querySelector('.done-tab').style.display = 'flex';
+            document.querySelector('.todo-tab').style.display = 'none';
+        }
+    })
+}
+switchTodoTab();
+    
 
 
 
