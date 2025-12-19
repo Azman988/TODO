@@ -415,7 +415,7 @@ function submitBtn()  {
     const textEl = document.querySelector('.js-text');
     todoName = textEl.value.toUpperCase();
     const timeEl = document.querySelector('.time');
-    dueTime = timeEl.value;
+    dueTime = convertTimeOutput(timeEl.value);
     
         // Only add task if there are text inputs
     if (textEl.value.trim() !== '' && timeEl.value !== '') {
@@ -458,6 +458,16 @@ function switchTodoTab() {
     })
 }
 switchTodoTab();
+
+function convertTimeOutput(time) {
+    const [hours, minutes] = time.split(':');
+    const h = parseInt(hours);
+    const m = minutes;
+    const period = h < 12 ? 'AM':'PM';
+    const hour = h % 12 === 0 ? 12 : h % 12;
+    
+    return `${hour}:${m} ${period}`
+}
     
 
 
