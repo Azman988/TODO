@@ -94,7 +94,7 @@ function renderTime() {
             // show time picker when clicked
         timeEl.showPicker();
             
-        document.querySelector('.js-time-format').textContent = "24hrs Format Only";
+        document.querySelector('.js-time-format').textContent = "24hrs Format";
             // takeout the format display
         setTimeout(() => {
         document.querySelector('.js-time-format').textContent = ''; 
