@@ -214,8 +214,6 @@ function expCol(param) {
     }
 }
 
-
-
     // avoiding small screen style on large screen
 function windowResize() {
     window.addEventListener('resize', () => {
@@ -385,7 +383,7 @@ function editTodo() {
 
             const timeEl = document.querySelector('.time');
             if (time !== undefined) {
-                timeEl.value = time;
+                timeEl.value = convertTodoTime(time);
             }
 
             document.querySelector(`.js-list-container-${containerId}`).remove();
@@ -469,8 +467,20 @@ function convertTimeOutput(time) {
     return `${hour}:${m} ${period}`
 }
     
+function convertTodoTime(time) {
+    const timeParts = time.match(/(\d{1,2}):(\d{2}) (AM|PM)/);
+    let hour = parseInt(timeParts[1]);
+    const minute = timeParts[2];
+    const period = timeParts[3];
 
+    if (period === 'PM' & hour !== 12) {
+        hour += 12
+    } else if (period === 'AM' & hour === 12) {
+        hour = 0
+    }
 
+    return `${hour.toString().padStart(2,'0')}:${minute}`;
+}
 
     
 
