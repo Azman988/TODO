@@ -190,7 +190,7 @@ function expCol(param) {
 
             // raise the todo container height
         const todoContainer = document.querySelector('.todo-container')
-            todoContainer.style.height = '95vh';
+            todoContainer.style.height = '90vh';
 
     } else if (param === 'expand') {
 
@@ -208,6 +208,7 @@ function expCol(param) {
             // to show qoute div again when list tab is displayed in small screen 
         const qouteDivEl = document.querySelector('.qoute-div');
             qouteDivEl.style.display = 'block';
+            qouteDivEl.style.height = '120px';
 
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.height = '';
@@ -300,11 +301,15 @@ function renderHtml() {
             </div>`;
         todoHtml += html;
     })
-    document.querySelector('.todo-tab').innerHTML = todoHtml;
+
+        if (todoList.length === 0) {
+            document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Todo</p>';
+        } else {
+            document.querySelector('.todo-tab').innerHTML = todoHtml;
+        }
 
     editTodo()
 };
-
 
 let doneList = JSON.parse(localStorage.getItem('done')) || [];
     // Add interactivity to checkbox
@@ -322,6 +327,7 @@ function markDone() {
 
                 // extract the clicked value from mother array and save the remaining to a diff div
             newTodoList = [];
+
             todoList.forEach(lists => {
                 if (doneId !== lists.id) {
                     newTodoList.push(lists)
@@ -331,8 +337,8 @@ function markDone() {
             todoList = newTodoList;
 
                 // remove the value container from the UI
-            //let container = document.querySelector(`.js-list-container-${doneId}`);
-            //container.remove();
+            let container = document.querySelector(`.js-list-container-${doneId}`);
+            container.remove();
 
             localStorage.setItem('todo', JSON.stringify(todoList));
 
@@ -348,7 +354,7 @@ function renderDoneHtml() {
     doneList.forEach((todo, index) => {
         html += `
             <div class="done-list-container">
-                <input type="checkbox" name="uncheck-todo" checked>
+                <input type="checkbox" class="done-checkmark" name="uncheck-todo" checked>
                 <p class="todo-name">${todo.todoName}</p>
                 <p>${todo.dueTime}</p>
                 <i class="fa-solid fa-trash-can del-icon" onclick="doneList.splice(${index}, 1);
@@ -356,7 +362,12 @@ function renderDoneHtml() {
                    localStorage.setItem('done', JSON.stringify(doneList));"></i>
             </div>`
     });
-    document.querySelector('.done-tab').innerHTML = html;
+
+    if (doneList.length === 0) {
+        document.querySelector('.done-tab').innerHTML = '<p class="notodo-text">No Accomplish</p>';
+    } else {
+        document.querySelector('.done-tab').innerHTML = html;
+    }
 }
 renderDoneHtml();
 
@@ -386,7 +397,7 @@ function editTodo() {
                 timeEl.value = convertTodoTime(time);
             }
 
-            document.querySelector(`.js-list-container-${containerId}`).remove();
+            //document.querySelector(`.js-list-container-${containerId}`).remove();
 
             let newTodoList = [];
 
@@ -408,7 +419,7 @@ editTodo();
 function submitBtn()  {
     setTimeout(() => {
         document.querySelector('.submit-text').style.display = 'none';
-    }, 900)
+    }, 1000)
 
     const textEl = document.querySelector('.js-text');
     todoName = textEl.value.toUpperCase();
@@ -420,7 +431,7 @@ function submitBtn()  {
             // recall the push function.
         todoList.push(createTodo(todoName, dueTime));
         document.querySelector('.submit-text').style.display = 'block';
-    }
+    } 
 
     textEl.value = '';
     timeEl.value = '';
@@ -433,6 +444,7 @@ function submitBtn()  {
     }
 
     if (timeEl.value === '') {
+
         timeEl.classList.remove('focused');
     }
 
@@ -456,6 +468,25 @@ function switchTodoTab() {
     })
 }
 switchTodoTab();
+
+function settingMenu() {
+    const menu = document.querySelector('.menu');
+
+    const setting = document.querySelector('.js-setting-icon');
+    setting.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('show');
+
+
+
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !setting.contains(e.target)) {
+                menu.classList.remove('show')
+            }
+        })
+    })
+}
+settingMenu();
 
 function convertTimeOutput(time) {
     const [hours, minutes] = time.split(':');
