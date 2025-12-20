@@ -302,11 +302,11 @@ function renderHtml() {
         todoHtml += html;
     })
 
-        if (todoList.length === 0) {
-            document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Todo</p>';
-        } else {
-            document.querySelector('.todo-tab').innerHTML = todoHtml;
-        }
+    if (todoList.length === 0) {
+        document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Todo</p>';
+    } else {
+        document.querySelector('.todo-tab').innerHTML = todoHtml;
+    }
 
     editTodo()
 };
@@ -364,7 +364,7 @@ function renderDoneHtml() {
     });
 
     if (doneList.length === 0) {
-        document.querySelector('.done-tab').innerHTML = '<p class="notodo-text">No Accomplish</p>';
+        document.querySelector('.done-tab').innerHTML = '<p class="notodo-text">No Accomplished</p>';
     } else {
         document.querySelector('.done-tab').innerHTML = html;
     }
@@ -487,6 +487,46 @@ function settingMenu() {
     })
 }
 settingMenu();
+
+/*function searchtext() {
+    const searchEL = document.querySelector('.search-bar');
+
+    const searchList = []
+
+    searchEL.addEventListener('input', () => {
+        todoList.forEach(list => {
+            if (list.todoName.includes(searchEL.value.toUpperCase())) {
+                searchList.push(list)
+                //console.log(list)
+            }
+        })
+    })
+
+    let todoHtml = '';
+
+    searchList.forEach((value, index) => {
+        html = `
+            <div class="list-container js-list-container" data-list-container-id="${value.id}">
+                <p class="todo-name">${value.todoName}</p>
+                <p class="todo-time">${value.dueTime}</p>
+                <div class="mark_del-div">
+                    <input type="checkbox" name="check" class="checkbox" data-done-id="${value.id}">
+
+                    <i class="fa-solid fa-trash-can del-icon" onclick="todoList.splice(${index}, 1);
+                   renderHtml()
+                   localStorage.setItem('todo', JSON.stringify(todoList));"></i>
+                </div>
+            </div>`;
+        todoHtml += html;
+    })
+
+    if (searchList.length === 0) {
+            document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Match result</p>';
+        } else {
+            document.querySelector('.todo-tab').innerHTML = todoHtml;
+        }
+        console.log(todoHtml)
+}*/
 
 function convertTimeOutput(time) {
     const [hours, minutes] = time.split(':');
