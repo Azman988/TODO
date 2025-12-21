@@ -179,12 +179,12 @@ function expCol(param) {
 
             //to make INPUT content show again
         const contentEl = document.querySelector('.content');
-            contentEl.style.display = 'block';
+            contentEl.style.display = 'grid';
 
             // to show qoute div again when list tab is displayed in small screen 
         const qouteDivEl = document.querySelector('.qoute-div');
             qouteDivEl.style.display = 'block';
-            qouteDivEl.style.height = '120px';
+            qouteDivEl.style.height = '500px';
 
         const todoContainer = document.querySelector('.todo-container')
             todoContainer.style.height = '';
@@ -488,6 +488,7 @@ function searchIcon() {
 
         render(searchList);
     })
+    editTodo()
 }
 searchIcon();
 
@@ -509,8 +510,11 @@ function render(arr) {
             </div>`;
         todoHtml += html;
     })
-
-    document.querySelector('.todo-tab').innerHTML = todoHtml;
+    if (todoList.length === 0) {
+        document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Todo</p>';
+    } else {
+        document.querySelector('.todo-tab').innerHTML = todoHtml;
+    }
 }
 
    // Task header exit icon interactivity

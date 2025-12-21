@@ -307,7 +307,7 @@ select:focus {
     background: rgba(233, 232, 231, 0.5);
     box-shadow: 0px 0px 1px rgb(77, 76, 76);
     border-radius: 5px;
-    height: 500px;
+    height: 500px !important;
     margin-top: 6px;
     padding: 20px;
 }
@@ -332,7 +332,7 @@ select:focus {
 .todo-container {
     display: block;
     scrollbar-width: none;
-    overflow-y: auto !important;
+    overflow-y: scroll !important;
     background: #f0eeee;
     margin-right: 3px;
     position: relative;
@@ -605,10 +605,11 @@ select:focus {
     }
 
     .expand-icon {
-        position: absolute;
+        position: sticky;
         bottom: 20%;
-        right: 5%;
+        margin-left: 87%;
         font-size: 17px;
+        width: fit-content;
         padding: 10px;
         border-radius: 100%;
         color: #fafafa;
