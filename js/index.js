@@ -139,30 +139,6 @@ function autotyping() {
 }
 autotyping();
 
-    // Task header search icon interactivity 
-function searchIcon() {
-    document.querySelector('.search-icon').addEventListener('click', () => {
-        document.querySelector('.task-header-icons').style.display = 'none'
-        document.querySelector('.task-tab-dropdown').style.display = 'none'
-
-        document.querySelector('.search-bar').style.display = 'block'
-        document.querySelector('.search-bar').focus();
-        
-        document.querySelector('.cancel-icon').style.display = 'block'
-    })
-}
-searchIcon();
-
-    // Task header exit icon interactivity
-document.querySelector('.cancel-icon').addEventListener('click', () => {
-    document.querySelector('.task-header-icons').style.display = 'block'
-    document.querySelector('.task-tab-dropdown').style.display = 'block'
-
-    document.querySelector('.search-bar').style.display = 'none'
-    
-    document.querySelector('.cancel-icon').style.display = 'none'
-})
-
     //TODO INPUT CONTAINER EXPAND AND COLLAPSE FUNCTION
 function expCol(param) {
     
@@ -469,6 +445,85 @@ function switchTodoTab() {
 }
 switchTodoTab();
 
+ // search element
+function searchIcon() {
+    document.querySelector('.search-icon').addEventListener('click', () => {
+        document.querySelector('.task-header-icons').style.display = 'none'
+        document.querySelector('.task-tab-dropdown').style.display = 'none'
+
+        document.querySelector('.search-bar').style.display = 'block'
+        document.querySelector('.search-bar').focus();
+        
+        document.querySelector('.cancel-icon').style.display = 'block'
+    })
+
+    const searchEL = document.querySelector('.search-bar');
+
+    let searchList = [...todoList]
+
+    searchEL.addEventListener('input', () => {
+        
+        let value = searchEL.value.toUpperCase();
+
+        let matched = [];
+        let unMatched = [];
+
+        todoList.forEach(list => {
+            if  (list.todoName.includes(value)) {
+                matched.push(list)
+            }
+        })
+
+        todoList.forEach(list => {
+            if (!list.todoName.includes(value)) {
+                unMatched.push(list)
+            }
+        })
+
+        if (value === '') {
+            searchList = [...todoList]
+        } 
+
+        searchList = [...matched, ...unMatched]
+
+        render(searchList);
+    })
+}
+searchIcon();
+
+function render(arr) {
+    let todoHtml = '';
+
+    arr.forEach((value, index) => {
+        html = `
+            <div class="list-container js-list-container-${value.id} js-list-container" data-list-container-id="${value.id}">
+                <p class="todo-name">${value.todoName}</p>
+                <p class="todo-time">${value.dueTime}</p>
+                <div class="mark_del-div">
+                    <input type="checkbox" name="check" class="checkbox" data-done-id="${value.id}">
+
+                    <i class="fa-solid fa-trash-can del-icon" onclick="todoList.splice(${index}, 1);
+                   renderHtml()
+                   localStorage.setItem('todo', JSON.stringify(todoList));"></i>
+                </div>
+            </div>`;
+        todoHtml += html;
+    })
+
+    document.querySelector('.todo-tab').innerHTML = todoHtml;
+}
+
+   // Task header exit icon interactivity
+document.querySelector('.cancel-icon').addEventListener('click', (e) => {
+    document.querySelector('.task-header-icons').style.display = 'flex'
+    document.querySelector('.task-tab-dropdown').style.display = 'block'
+
+    let input = document.querySelector('.search-bar');
+    input.style.display = 'none';
+    
+    document.querySelector('.cancel-icon').style.display = 'none'
+})
+
 function settingMenu() {
     const menu = document.querySelector('.menu');
 
@@ -488,45 +543,10 @@ function settingMenu() {
 }
 settingMenu();
 
-/*function searchtext() {
-    const searchEL = document.querySelector('.search-bar');
-
-    const searchList = []
-
-    searchEL.addEventListener('input', () => {
-        todoList.forEach(list => {
-            if (list.todoName.includes(searchEL.value.toUpperCase())) {
-                searchList.push(list)
-                //console.log(list)
-            }
-        })
-    })
-
-    let todoHtml = '';
-
-    searchList.forEach((value, index) => {
-        html = `
-            <div class="list-container js-list-container" data-list-container-id="${value.id}">
-                <p class="todo-name">${value.todoName}</p>
-                <p class="todo-time">${value.dueTime}</p>
-                <div class="mark_del-div">
-                    <input type="checkbox" name="check" class="checkbox" data-done-id="${value.id}">
-
-                    <i class="fa-solid fa-trash-can del-icon" onclick="todoList.splice(${index}, 1);
-                   renderHtml()
-                   localStorage.setItem('todo', JSON.stringify(todoList));"></i>
-                </div>
-            </div>`;
-        todoHtml += html;
-    })
-
-    if (searchList.length === 0) {
-            document.querySelector('.todo-tab').innerHTML = '<p class="notodo-text">No Match result</p>';
-        } else {
-            document.querySelector('.todo-tab').innerHTML = todoHtml;
-        }
-        console.log(todoHtml)
-}*/
+function searchtext() {
+    
+}
+searchtext()
 
 function convertTimeOutput(time) {
     const [hours, minutes] = time.split(':');
