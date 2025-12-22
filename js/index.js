@@ -57,7 +57,7 @@ function textIcon(param) {
         document.querySelector('.js-clear-icon').style.display = 'none';
     }
 }
-        // switch text icons on text input
+        // switch text icons on text insert
 function textIconSwitch() {
     document.querySelector('.js-text').addEventListener('input', () => {
         const focusIcon = document.querySelector('.js-focus-icon');
@@ -67,12 +67,13 @@ function textIconSwitch() {
         if (textEl.value.trim() === '') {
             clearIcon.style.display = 'none';
             focusIcon.style.display = 'block';
-            textEl.classList.remove('focused');
+            textEl.classList.remove('focused')
         } else {
             clearIcon.style.display = 'block';
             focusIcon.style.display = 'none';
             textEl.classList.add('focused')
         }
+        
     })
 }
 textIconSwitch()
@@ -83,11 +84,14 @@ function renderTime() {
     timeEl.addEventListener('input', () => {
         
             // add bottom border color
-        if (document.activeElement !== timeEl) {
+            timeEl.classList.toggle('focused');
+
+        /*if (document.activeElement !== timeEl) {
             timeEl.classList.remove('focused')
         } else {
             timeEl.classList.add('focused')
-        }
+        }*/
+
     })
 
     timeEl.addEventListener('click', () => {
@@ -132,7 +136,7 @@ function autotyping() {
                 isDeleting = true;
             }
         }
-        setTimeout(autoType, isDeleting ? 100 : 100);
+        setTimeout(autoType, 100);
     }
 
     autoType();

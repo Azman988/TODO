@@ -582,6 +582,21 @@ select:focus {
         display: block;
     }
 
+    .expand-icon {
+        position: fixed;
+        right: 5%;
+        bottom: 30%;
+        font-size: 17px;
+        width: fit-content;
+        padding: 10px;
+        border-radius: 100%;
+        color: #fafafa;
+        background-color: #77d321;
+        cursor: pointer;
+        z-index: 2;
+        box-shadow: 0px 0px 5px #181717;
+    }
+
     .input_qoute-div {
         padding: 0;
     }
@@ -602,21 +617,6 @@ select:focus {
     .notodo-text {
         position: absolute;
         top: 50%;
-    }
-
-    .expand-icon {
-        position: sticky;
-        bottom: 20%;
-        margin-left: 87%;
-        font-size: 17px;
-        width: fit-content;
-        padding: 10px;
-        border-radius: 100%;
-        color: #fafafa;
-        background-color: #77d321;
-        cursor: pointer;
-        z-index: 2;
-        box-shadow: 0px 0px 5px #181717;
     }
 
 }
