@@ -58,7 +58,7 @@ function textIcon(param) {
     }
 }
         // switch text icons on text insert
-function textIconSwitch() {
+{
     document.querySelector('.js-text').addEventListener('input', () => {
         const focusIcon = document.querySelector('.js-focus-icon');
         const clearIcon = document.querySelector('.js-clear-icon');
@@ -76,9 +76,8 @@ function textIconSwitch() {
         
     })
 }
-textIconSwitch()
         
-function renderTime() {
+{
     // add bottom border color when text is inserted
     const timeEl = document.querySelector('.time')
     timeEl.addEventListener('input', () => {
@@ -110,7 +109,6 @@ function renderTime() {
             timeEl.click(); // CLICK TIME INPUT
         })
 }
-renderTime();
 
     // qoute autotyping..
 function autotyping() {
@@ -333,7 +331,7 @@ function renderDoneHtml() {
 
     doneList.forEach((todo, index) => {
         html += `
-            <div class="done-list-container">
+            <div class="done-list-container"  data-list-container-id="${todo.id}">
                 <input type="checkbox" class="done-checkmark" name="uncheck-todo" checked>
                 <p class="todo-name">${todo.todoName}</p>
                 <p>${todo.dueTime}</p>
@@ -395,6 +393,33 @@ function editTodo() {
 }
 editTodo();
 
+    //Edit done list
+{
+    document.querySelectorAll('.done-list-container').forEach(list => {
+        list.addEventListener('click', () => {
+            const listId = list.dataset.listContainerId
+
+            let text;
+            let time;
+
+            doneList.forEach(list => {
+                if (listId === list.id) {
+                    text = list.todoName
+                    time = list.dueTime
+                }
+            })
+
+            let text_input = document.querySelector('.js-text')
+            let time_input = document.querySelector('.time')
+
+            if (text !== undefined && time !== undefined) {
+                text_input.value = text
+                time_input.value = convertTodoTime(time)
+            }
+        })
+    })
+}
+
     // Add interactivity to checkbox Submit btn..
 function submitBtn()  {
     setTimeout(() => {
@@ -450,7 +475,7 @@ function switchTodoTab() {
 switchTodoTab();
 
  // search element
-function searchIcon() {
+{
     document.querySelector('.search-icon').addEventListener('click', () => {
         document.querySelector('.task-header-icons').style.display = 'none'
         document.querySelector('.task-tab-dropdown').style.display = 'none'
@@ -460,7 +485,6 @@ function searchIcon() {
         
         document.querySelector('.cancel-icon').style.display = 'block'
     })
-
     const searchEL = document.querySelector('.search-bar');
 
     let searchList = [...todoList]
@@ -473,7 +497,7 @@ function searchIcon() {
         let unMatched = [];
 
         todoList.forEach(list => {
-            if  (list.todoName.includes(value)) {
+            if (list.todoName.includes(value)) {
                 matched.push(list)
             }
         })
@@ -485,7 +509,7 @@ function searchIcon() {
         })
 
         if (value === '') {
-            searchList = [...todoList]
+            searchList = searchList
         } 
 
         searchList = [...matched, ...unMatched]
@@ -494,7 +518,6 @@ function searchIcon() {
     })
     editTodo()
 }
-searchIcon();
 
 function render(arr) {
     let todoHtml = '';
@@ -580,6 +603,3 @@ function convertTodoTime(time) {
 
     return `${hour.toString().padStart(2,'0')}:${minute}`;
 }
-
-    
-

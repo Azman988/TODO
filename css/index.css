@@ -528,6 +528,9 @@ select:focus {
     border-bottom: 3px solid #77d321;
     transition: 0.3s ease-in-out;
 }
+.display {
+    display: none;
+}
 /*** APPLIES WHEN TYPING IN TODO INPUT ***/
 
 /****** Generated style list ******/
